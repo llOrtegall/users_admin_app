@@ -1,6 +1,9 @@
-import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { useTheme } from "../context/ThemeProvider";
 import { useAuth } from "../auth/AuthProvider";
+import { BottonTheme } from "./ui/BottonTheme";
+import { NavLink } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
+import axios from "axios";
 
 const RoutesLinks = [
   { name: 'Home', path: '/' },
@@ -12,6 +15,7 @@ const RoutesLinks = [
 
 function NavBar() {
   const { setIsAuthenticated } = useAuth()
+  const { toggleTheme } = useTheme()
 
   const handleLogout = () => {
     const token = document.cookie
@@ -26,7 +30,7 @@ function NavBar() {
   }
 
   return (
-    <nav className='bg-white border-gray-200 dark:bg-gray-900'>
+    <nav className='dark:bg-gray-900'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
         <a href='https://flowbite.com/' className='flex items-center space-x-3 rtl:space-x-reverse'>
           <img src='react.svg' className='h-8' alt='Flowbite Logo' />
@@ -45,8 +49,10 @@ function NavBar() {
           </ul>
         </div>
 
-        <button onClick={() => handleLogout()} className='bg-blue-400 rounded-md py-1 px-2 hover:bg-blue-600 transition-all'>
-          LogOut
+        <BottonTheme funTheme={toggleTheme}/>
+
+        <button onClick={() => handleLogout()} className=''>
+          <FiLogOut />
         </button>
       </div>
     </nav>
