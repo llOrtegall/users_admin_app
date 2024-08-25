@@ -3,6 +3,7 @@ import { Input } from './ui/Input';
 import { Label } from './ui/Label';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 const Procces = [
   { id: 1, name: 'Técnologia' },
@@ -36,101 +37,93 @@ const SubProcces = [
 
 function CreateNewUser() {
   const navigate = useNavigate();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    const formData = new FormData(ev.currentTarget);
-    const data = {
-      names: formData.get('names') as string,
-      lastNames: formData.get('lastNames') as string,
-      document: formData.get('document') as string,
-      phone: formData.get('phone') as string,
-      company: formData.get('company') as string,
-      email: formData.get('email') as string,
-      process: formData.get('process') as string,
-      sub_process: formData.get('sub_process') as string
-    }
-    
+
+    const data = Object.fromEntries(new FormData(ev.currentTarget));
+
     axios.post('/register', data)
       .then(res => {
-        if(res.status === 201){
+        if (res.status === 201) {
+          formRef.current?.reset();
           toast.success('Usuario creado correctamente');
-          // Limpiar campos
-          ev.currentTarget.reset();
           setTimeout(() => {
             navigate('/users/list');
-          }, 5000);
-        }
-      })
-      .catch(err => {
-        if(err.response.status === 400){
-          toast.error('Error al crear el usuario', { description: err.response.data.error || 'Error desconocido consulte admin' });
-        }
-      })
-  }
+          }, 3000);
+        }})
+      .catch (err => {
+    if (err.response.status === 400) {
+      toast.error('Error al crear el usuario', { description: err.response.data.error || 'Error desconocido consulte admin' });
+    } else {
+      toast.error('Error al crear el usuario', { description: 'Error desconocido consulte admin' });
+    }
+  })
+}
 
-  return (
-    <div>
-      <h1 className='text-center py-2 font-bold text-2xl text-gray-700'>Create New User</h1>
+return (
+  <div>
+    <h1 className='text-center py-2 font-bold text-2xl text-gray-700 dark:text-gray-300'>Create New User</h1>
 
-      <form className='max-w-md mx-auto pt-12' onSubmit={ev => handleSubmit(ev)}>
-        <div className='grid md:grid-cols-2 md:gap-6'>
-          <div className='relative z-0 w-full mb-5 group'>
-            <Input type='text' name='names' id='names' placeholder=' '  />
-            <Label >Nombres</Label>
-          </div>
-          <div className='relative z-0 w-full mb-5 group'>
-            <Input type='text' name='lastNames' id='lastNames' placeholder=' ' />
-            <Label >Apellidos</Label>
-          </div>
+    <form ref={formRef} className='max-w-md mx-auto pt-12' onSubmit={ev => handleSubmit(ev)}>
+      <div className='grid md:grid-cols-2 md:gap-6'>
+        <div className='relative z-0 w-full mb-5 group'>
+          <Input type='text' name='names' id='names' placeholder=' ' />
+          <Label >Nombres</Label>
         </div>
         <div className='relative z-0 w-full mb-5 group'>
-          <Input type='number' name='document' id='document' placeholder=''  />
-          <Label>N° Documento</Label>
+          <Input type='text' name='lastNames' id='lastNames' placeholder=' ' />
+          <Label >Apellidos</Label>
         </div>
-        <div className='grid md:grid-cols-2 md:gap-6'>
-          <div className='relative z-0 w-full mb-5 group'>
-            <Input type='number' name='phone' id='phone' placeholder=' '  />
-            <Label>N° Celular (123-456-7890)</Label>
-          </div>
-          <div className='relative z-0 w-full mb-5 group'>
-            <select id='company' name='company' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
-              <option >Seleccione Empresa</option>
-              <option value={0}>Multired Y Servired</option>
-              <option value={1}>Multired</option>
-              <option value={2}>Servired</option>
-            </select>
-          </div>
+      </div>
+      <div className='relative z-0 w-full mb-5 group'>
+        <Input type='number' name='document' id='document' placeholder='' />
+        <Label>N° Documento</Label>
+      </div>
+      <div className='grid md:grid-cols-2 md:gap-6'>
+        <div className='relative z-0 w-full mb-5 group'>
+          <Input type='number' name='phone' id='phone' placeholder=' ' />
+          <Label>N° Celular (123-456-7890)</Label>
         </div>
         <div className='relative z-0 w-full mb-5 group'>
-          <Input type='email' name='email' id='email' placeholder=''  />
-          <Label >Correo Electronico</Label>
+          <select id='company' name='company' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+            <option >Seleccione Empresa</option>
+            <option value={0}>Multired Y Servired</option>
+            <option value={1}>Multired</option>
+            <option value={2}>Servired</option>
+          </select>
         </div>
-        <div className='grid md:grid-cols-2 md:gap-6'>
-          <div className='relative z-0 w-full mb-5 group'>
-            <select id='process' name='process' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
-              <option>Seleccione Proceso</option>
-              {Procces.map((item) => (
-                <option key={item.id} value={item.id}>{item.name}</option>
-              ))}
-            </select>
-          </div>
-          <div className='relative z-0 w-full mb-5 group'>
-            <select id='sub_process' name='sub_process' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
-              <option>Seleccione Sub-Proceso</option>
-              {SubProcces.map((item) => (
-                <option key={item.id} value={item.id}>{item.name}</option> 
-              ))}
-            </select>
-          </div>
-
-          <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Crear Nuevo Usurio</button>
+      </div>
+      <div className='relative z-0 w-full mb-5 group'>
+        <Input type='email' name='email' id='email' placeholder='' />
+        <Label >Correo Electronico</Label>
+      </div>
+      <div className='grid md:grid-cols-2 md:gap-6'>
+        <div className='relative z-0 w-full mb-5 group'>
+          <select id='process' name='process' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+            <option>Seleccione Proceso</option>
+            {Procces.map((item) => (
+              <option key={item.id} value={item.id}>{item.name}</option>
+            ))}
+          </select>
+        </div>
+        <div className='relative z-0 w-full mb-5 group'>
+          <select id='sub_process' name='sub_process' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+            <option>Seleccione Sub-Proceso</option>
+            {SubProcces.map((item) => (
+              <option key={item.id} value={item.id}>{item.name}</option>
+            ))}
+          </select>
         </div>
 
-      </form>
+        <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Crear Nuevo Usurio</button>
+      </div>
 
-    </div>
-  );
+    </form>
+
+  </div>
+);
 }
 
 export default CreateNewUser;

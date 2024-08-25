@@ -5,6 +5,7 @@ import Root from './Root'
 import Home from '../pages/Home'
 import UsersPage from '../pages/Users'
 import NotFound from '../pages/NotFound'
+import ListUsers from '../components/ListUsers'
 import CreateNewUser from '../components/CreateUser'
 
 const router = createBrowserRouter([
@@ -22,9 +23,13 @@ const router = createBrowserRouter([
         element: <UsersPage />,
         children: [
           {
+            index: true,
+            element: <ListUsers />
+          },
+          {
             path: 'create',
             element: <CreateNewUser />
-          }
+          },
         ]
       }
     ]

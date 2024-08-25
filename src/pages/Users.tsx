@@ -7,10 +7,10 @@ function UsersPage () {
         <h1 className='text-center py-2 font-semibold'>Acciones</h1>
         <ul>
           <li className='py-1 border-b border-gray-500'>
-            <NavLink to='/users/create'>Crear usuario</NavLink>
+            <NavLink to='/users'>Listar usuarios</NavLink>
           </li>
           <li className='py-1 border-b border-gray-500'>
-            <NavLink to='/users/list'>Listar usuarios</NavLink>
+            <NavLink to='/users/create'>Crear usuario</NavLink>
           </li>
         </ul>
       </nav>

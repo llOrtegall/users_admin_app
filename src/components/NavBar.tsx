@@ -1,7 +1,7 @@
 import { useTheme } from '../context/ThemeProvider';
 import { useAuth } from '../auth/AuthProvider';
 import { BottonTheme } from './ui/BottonTheme';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ const RoutesLinks = [
 function NavBar() {
   const { setIsAuthenticated } = useAuth()
   const { toggleTheme } = useTheme()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     const token = document.cookie
@@ -22,6 +23,7 @@ function NavBar() {
         console.log(res.data);
         if (res.status === 200) {
           setIsAuthenticated(false)
+          navigate('/')
         }
       })
   }
@@ -45,7 +47,7 @@ function NavBar() {
 
       <BottonTheme funTheme={toggleTheme} />
 
-      <button onClick={() => handleLogout()} className=''>
+      <button onClick={() => handleLogout()} className='dark:text-white' title='Cerrar Sesión'>
         <FiLogOut />
       </button>
 
