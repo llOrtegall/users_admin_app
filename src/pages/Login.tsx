@@ -33,13 +33,15 @@ function Login() {
   }
   
   return (
-    <section className='h-screen w-screen flex items-center justify-center pb-12'>
+    <section className='h-screen w-screen flex items-center justify-center pb-12 relative'>
 
+    <div className='absolute top-2 right-2'>
       <BottonTheme funTheme={toggleTheme}/>
+    </div>
 
       { darkMode ? <BgDark /> : <BgLight /> }
 
-      <form className='lg:w-5/12 xl:w-4/12 2xl:w-3/12 flex flex-col border-2 border-gray-300 px-20 py-12 rounded-md bg-transparent/5 shadow-md' 
+      <form className='lg:w-5/12 xl:w-4/12 2xl:w-3/12 flex flex-col border-2 border-gray-300 dark:border-gray-500 px-20 py-12 rounded-md bg-transparent/5 shadow-md' 
         onSubmit={handleSubmit}>
         <figure className='flex justify-center pb-12'>
           <img src='gane.webp' alt='logo de gane' width={150}/>

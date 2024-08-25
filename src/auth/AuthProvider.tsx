@@ -1,6 +1,6 @@
-import React, { createContext, useEffect, useState } from "react";
-import { User } from "../types/User";
-import axios from "axios";
+import React, { createContext, useEffect, useState } from 'react';
+import { User } from '../types/User';
+import axios from 'axios';
 
 interface PropsAuthContext {
   children: React.ReactNode;
