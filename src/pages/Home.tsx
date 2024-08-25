@@ -1,6 +1,6 @@
 function Home() {
   return (
-    <main className=''>
+    <main className='cont_main flex flex-col items-center justify-center'>
       <h1 className='text-5xl font-bold mb-4 animate-bounce'>Welcome to Our Website!</h1>
       <p className='text-lg mb-8 text-center max-w-md'>
         We're glad to have you here. Explore our features and enjoy your stay.

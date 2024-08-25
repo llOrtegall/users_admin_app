@@ -37,7 +37,7 @@ function NavBar() {
         {
           RoutesLinks.map((link, index) => (
             <li key={index}>
-              <NavLink to={link.path} className={({ isActive }) => isActive ? 'text-yellow-400' : 'text-white'}> {link.name} </NavLink>
+              <NavLink to={link.path} className={({ isActive }) => isActive ? 'text-blue-600' : 'dark:text-white'}> {link.name} </NavLink>
             </li>
           ))
         }
