@@ -6,10 +6,10 @@ function UsersPage () {
       <nav className='w-2/12 px-4 bg-transparent/10 dark:text-white'>
         <h1 className='text-center py-2 font-semibold'>Acciones</h1>
         <ul>
-          <li className='py-1 border-b border-gray-500'>
+          <li className='py-1 border-b border-gray-500 text-lg font-semibold hover:text-blue-500'>
             <NavLink to='/users'>Listar usuarios</NavLink>
           </li>
-          <li className='py-1 border-b border-gray-500'>
+          <li className='py-1 border-b border-gray-500 text-lg font-semibold hover:text-blue-500'>
             <NavLink to='/users/create'>Crear usuario</NavLink>
           </li>
         </ul>

@@ -1,108 +1,99 @@
-function ListUsers() {
-  // const [users, setUsers] = useState<User[]>([]);
+import { useEffect, useMemo, useState } from 'react';
+import { UserListed } from '../types/User';
+import axios from 'axios';
 
-  // useEffect(() => {
-  //   fetch('https://jsonplaceholder.typicode.com/users')
-  //     .then(response => response.json())
-  //     .then((data: User[]) => setUsers(data));
-  // }, []);
+function ListUsers() {
+  const [users, setUsers] = useState<UserListed[]>([]);
+  const [search, setSearch] = useState<string>('');
+
+  useEffect(() => {
+    axios.get('/users')
+      .then(res => {
+        setUsers(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
+  const filteredUsers = useMemo(() => {
+    return users.filter(user => {
+      return user.document.toString().includes(search.toLocaleLowerCase()) || user.names.toLowerCase().includes(search.toLocaleLowerCase())
+    })
+  }, [users, search]);
 
   return (
-    <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
-      <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-        <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
-          <tr>
-            <th scope='col' className='px-6 py-3'>
-              Product name
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Color
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Category
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Price
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
-            <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-              Apple MacBook Pro 17'
-            </th>
-            <td className='px-6 py-4'>
-              Silver
-            </td>
-            <td className='px-6 py-4'>
-              Laptop
-            </td>
-            <td className='px-6 py-4'>
-              $2999
-            </td>
-            <td className='px-6 py-4'>
-              <a href='#' className='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a>
-            </td>
-          </tr>
-          <tr className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
-            <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-              Microsoft Surface Pro
-            </th>
-            <td className='px-6 py-4'>
-              White
-            </td>
-            <td className='px-6 py-4'>
-              Laptop PC
-            </td>
-            <td className='px-6 py-4'>
-              $1999
-            </td>
-            <td className='px-6 py-4'>
-              <a href='#' className='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a>
-            </td>
-          </tr>
-          <tr className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
-            <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-              Magic Mouse 2
-            </th>
-            <td className='px-6 py-4'>
-              Black
-            </td>
-            <td className='px-6 py-4'>
-              Accessories
-            </td>
-            <td className='px-6 py-4'>
-              $99
-            </td>
-            <td className='px-6 py-4'>
-              <a href='#' className='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a>
-            </td>
-          </tr>
-          <tr className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
-            <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-              Google Pixel Phone
-            </th>
-            <td className='px-6 py-4'>
-              Gray
-            </td>
-            <td className='px-6 py-4'>
-              Phone
-            </td>
-            <td className='px-6 py-4'>
-              $799
-            </td>
-            <td className='px-6 py-4'>
-              <a href='#' className='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <main>
+      <div className='max-w-md mx-auto'>
+        <label className='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'>Buscar</label>
+        <div className='relative'>
+          <div className='absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none'>
+            <svg className='w-4 h-4 text-gray-500 dark:text-gray-400' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'>
+              <path stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z' />
+            </svg>
+          </div>
+          <input type='search' id='default-search' className='outline-none block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' placeholder='1118415127  -  Pepito perez' required value={search} onChange={ev => setSearch(ev.target.value)}/>
+        </div>
+      </div>
 
-  );
+      <section className='h-[80vh] overflow-y-auto mt-1'>
+        <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-sm'>
+          <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+            <tr>
+              <th className='px-6 py-3'>N°</th>
+              <th className='px-6 py-3'>N° Documento</th>
+              <th className='px-6 py-3'>nombres</th>
+              <th className='px-6 py-3'>apellidos</th>
+              <th className='px-6 py-3'>empresa</th>
+              <th className='px-6 py-3'>proceso</th>
+              <th className='px-6 py-3'>estado</th>
+              <th className='px-6 py-3 text-center'>Opciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {
+              filteredUsers?.map((user, index) =>
+                <tr key={user.document} className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700'>
+                  <td className='px-3'>
+                    {index + 1}
+                  </td>
+                  <td className='px-3'>
+                    {user.document}
+                  </td>
+                  <td className='px-3'>
+                    {user.names}
+                  </td>
+                  <td className='px-3'>
+                    {user.lastnames}
+                  </td>
+                  <td className='px-3'>
+                    {user.company}
+                  </td>
+                  <td className='px-3'>
+                    {user.process}
+                  </td>
+                  <td className='px-3'>
+                    {
+                      user.state
+                        ? <span className='bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300'>Activo</span>
+                        : <span className='bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300'>Inactivo</span>
+                    }
+                  </td>
+                  <td className='px-6 py-4 flex gap-2 justify-center text-black dark:text-white'>
+                    <button className='rounded-md dark:hover:bg-green-500 dark:bg-green-700 bg-green-300 py-1 px-2 hover:bg-green-500 hover:text-white transition-all'>Ver Info</button>
+                    <button className='rounded-md dark:hover:bg-yellow-500 dark:bg-yellow-600 bg-yellow-200 py-1 px-2 hover:bg-yellow-400 hover:text-white transition-all'>Editar</button>
+                    <button className='rounded-md dark:hover:bg-red-500 dark:bg-red-700 bg-red-300 py-1 px-2 hover:bg-red-500 hover:text-white transition-all'>Eliminar</button>
+                  </td>
+                </tr>
+              )
+            }
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+  )
 }
 
 export default ListUsers;

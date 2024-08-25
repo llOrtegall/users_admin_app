@@ -50,7 +50,7 @@ function CreateNewUser() {
           formRef.current?.reset();
           toast.success('Usuario creado correctamente');
           setTimeout(() => {
-            navigate('/users/list');
+            navigate('/users');
           }, 3000);
         }})
       .catch (err => {
@@ -64,7 +64,7 @@ function CreateNewUser() {
 
 return (
   <div>
-    <h1 className='text-center py-2 font-bold text-2xl text-gray-700 dark:text-gray-300'>Create New User</h1>
+    <h1 className='text-center py-2 font-bold text-2xl text-gray-700 dark:text-gray-300'>Creación Nuevo Usuario</h1>
 
     <form ref={formRef} className='max-w-md mx-auto pt-12' onSubmit={ev => handleSubmit(ev)}>
       <div className='grid md:grid-cols-2 md:gap-6'>
