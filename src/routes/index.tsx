@@ -3,15 +3,22 @@ import Root from './Root';
 
 // TODO: Import your pages here
 import Home from '../pages/Home';
+import UsersPage from '../pages/Users';
+import NotFound from '../pages/NotFound';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
         element: <Home />
+      },
+      {
+        path: 'users',
+        element: <UsersPage />
       }
     ]
   },

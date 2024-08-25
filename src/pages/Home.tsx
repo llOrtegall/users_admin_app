@@ -9,7 +9,7 @@ function Home() {
         Get Started
       </button>
     </main>
-  );
+  )
 }
 
-export default Home;
+export default Home
