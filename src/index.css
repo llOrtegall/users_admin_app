@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .cont_main {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 65px);
 }

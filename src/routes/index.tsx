@@ -1,10 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Root from './Root';
+import { createBrowserRouter } from 'react-router-dom'
+import Root from './Root'
 
 // TODO: Import your pages here
-import Home from '../pages/Home';
-import UsersPage from '../pages/Users';
-import NotFound from '../pages/NotFound';
+import Home from '../pages/Home'
+import UsersPage from '../pages/Users'
+import NotFound from '../pages/NotFound'
+import CreateNewUser from '../components/CreateUser'
 
 const router = createBrowserRouter([
   {
@@ -18,10 +19,16 @@ const router = createBrowserRouter([
       },
       {
         path: 'users',
-        element: <UsersPage />
+        element: <UsersPage />,
+        children: [
+          {
+            path: 'create',
+            element: <CreateNewUser />
+          }
+        ]
       }
     ]
   },
-]);
+])
 
-export default router;
+export default router
