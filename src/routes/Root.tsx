@@ -8,10 +8,10 @@ import { useTheme } from '../context/ThemeProvider';
 import { Toaster } from 'sonner';
 
 export default function Root() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { darkMode } = useTheme();
 
-  if(!isAuthenticated){
+  if(!isAuthenticated && !user){
     return <Login />
   }
 
