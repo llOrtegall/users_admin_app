@@ -13,8 +13,8 @@ pipeline {
         stage('Copy .env files') {
             steps {
                 script {
-                    def envApiContent = readFile(ENV_API_LOGIN_URL)
-                    writeFile file: './.env', text: envClientContent
+                    def env_client = readFile(ENV_API_LOGIN_URL)
+                    writeFile file: '.env', text: env_client
                 }
             }
         }
