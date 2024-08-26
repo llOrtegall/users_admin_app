@@ -75,7 +75,7 @@ function ListUsers() {
                     {user.lastnames}
                   </td>
                   <td className='px-3'>
-                    {user.company}
+                    {user.company.split('Y').join(' & ')}
                   </td>
                   <td className='px-3'>
                     {user.process}
@@ -90,8 +90,8 @@ function ListUsers() {
                   <td className='px-6 py-4 flex gap-2 justify-center text-black dark:text-white'>
                     <button onClick={() => handleUserInfo(user.document)} 
                     className='rounded-md dark:hover:bg-green-500 dark:bg-green-700 bg-green-300 py-1 px-2 hover:bg-green-500 hover:text-white transition-all'>Ver Info</button>
-                    <button className='rounded-md dark:hover:bg-yellow-500 dark:bg-yellow-600 bg-yellow-200 py-1 px-2 hover:bg-yellow-400 hover:text-white transition-all'>Editar</button>
-                    <button className='rounded-md dark:hover:bg-red-500 dark:bg-red-700 bg-red-300 py-1 px-2 hover:bg-red-500 hover:text-white transition-all'>Eliminar</button>
+                    {/* <button className='rounded-md dark:hover:bg-yellow-500 dark:bg-yellow-600 bg-yellow-200 py-1 px-2 hover:bg-yellow-400 hover:text-white transition-all'>Editar</button>
+                    <button className='rounded-md dark:hover:bg-red-500 dark:bg-red-700 bg-red-300 py-1 px-2 hover:bg-red-500 hover:text-white transition-all'>Eliminar</button> */}
                   </td>
                 </tr>
               )

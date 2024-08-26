@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  app-users-web:
+    image: nginx:stable-alpine3.19-slim
+    container_name: app-users-web
+    volumes:
+      - ./dist:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - red-gane-int
+
+networks:
+  red-gane-int:
+    external: true
