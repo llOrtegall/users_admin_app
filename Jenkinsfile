@@ -21,22 +21,22 @@ pipeline {
         stage('Install and build project') {
             steps {
                 script {
-                    sh 'sudo yarn'
-                    sh 'sudo yarn build'
+                    sh 'yarn'
+                    sh 'yarn build'
                 }
             }
         }
         stage('down docker compose'){
             steps {
                 script {
-                    sh 'sudo docker compose down'
+                    sh 'docker compose down'
                 }
             }
         }
         stage('run docker compose'){
             steps {
                 script {
-                    sh 'sudo docker compose up -d'
+                    sh 'docker compose up -d'
                 }
             }
         }
