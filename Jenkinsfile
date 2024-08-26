@@ -2,11 +2,11 @@ pipeline {
     agent any
     
     tools {
-        nodejs 'node-v22'
+      nodejs 'node-v22'
     }
 
     environment {
-        ENV_API_LOGIN_URL = credentials('ENV_API_LOGIN_URL')
+      ENV_API_LOGIN_URL = credentials('ENV_API_LOGIN_URL')
     }
     
     stages {
@@ -21,21 +21,22 @@ pipeline {
         stage('Install and build project') {
             steps {
                 script {
-                    sh 'yarn && yarn build'
+                    sh 'sudo yarn'
+                    sh 'sudo yarn build'
                 }
             }
         }
         stage('down docker compose'){
             steps {
                 script {
-                    sh 'docker compose down'
+                    sh 'sudo docker compose down'
                 }
             }
         }
         stage('run docker compose'){
             steps {
                 script {
-                    sh 'docker compose up -d'
+                    sh 'sudo docker compose up -d'
                 }
             }
         }
