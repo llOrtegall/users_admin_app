@@ -17,6 +17,7 @@ export interface UserListed {
   id: string;
   document: number;
   names: string;
+  phone: number;
   lastnames: string;
   username: string;
   email: string;

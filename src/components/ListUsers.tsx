@@ -1,26 +1,33 @@
-import { useEffect, useMemo, useState } from 'react';
-import { UserListed } from '../types/User';
-import axios from 'axios';
+import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserListed } from '../types/User'
+import axios from 'axios'
 
 function ListUsers() {
-  const [users, setUsers] = useState<UserListed[]>([]);
-  const [search, setSearch] = useState<string>('');
+  const [users, setUsers] = useState<UserListed[]>([])
+  const [search, setSearch] = useState<string>('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get('/users')
       .then(res => {
-        setUsers(res.data);
+        setUsers(res.data)
       })
       .catch(err => {
-        console.error(err);
-      });
-  }, []);
+        console.error(err)
+      })
+  }, [])
 
   const filteredUsers = useMemo(() => {
     return users.filter(user => {
       return user.document.toString().includes(search.toLocaleLowerCase()) || user.names.toLowerCase().includes(search.toLocaleLowerCase())
     })
-  }, [users, search]);
+  }, [users, search])
+
+  const handleUserInfo = (document: number) => {
+    console.log(document)
+    navigate(`/users/${document}`)
+  }
 
   return (
     <main>
@@ -81,7 +88,8 @@ function ListUsers() {
                     }
                   </td>
                   <td className='px-6 py-4 flex gap-2 justify-center text-black dark:text-white'>
-                    <button className='rounded-md dark:hover:bg-green-500 dark:bg-green-700 bg-green-300 py-1 px-2 hover:bg-green-500 hover:text-white transition-all'>Ver Info</button>
+                    <button onClick={() => handleUserInfo(user.document)} 
+                    className='rounded-md dark:hover:bg-green-500 dark:bg-green-700 bg-green-300 py-1 px-2 hover:bg-green-500 hover:text-white transition-all'>Ver Info</button>
                     <button className='rounded-md dark:hover:bg-yellow-500 dark:bg-yellow-600 bg-yellow-200 py-1 px-2 hover:bg-yellow-400 hover:text-white transition-all'>Editar</button>
                     <button className='rounded-md dark:hover:bg-red-500 dark:bg-red-700 bg-red-300 py-1 px-2 hover:bg-red-500 hover:text-white transition-all'>Eliminar</button>
                   </td>
@@ -96,4 +104,4 @@ function ListUsers() {
   )
 }
 
-export default ListUsers;
+export default ListUsers

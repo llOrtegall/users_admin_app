@@ -7,6 +7,7 @@ import UsersPage from '../pages/Users'
 import NotFound from '../pages/NotFound'
 import ListUsers from '../components/ListUsers'
 import CreateNewUser from '../components/CreateUser'
+import UserInfo from '../components/UserInfo'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             path: 'create',
             element: <CreateNewUser />
           },
+          {
+            path: ':id',
+            element: <UserInfo />
+          }
         ]
       }
     ]
