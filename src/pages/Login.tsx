@@ -1,44 +1,37 @@
+import { loginService, NetworkError } from '../services/loginServices'
+import { BottonTheme } from '../components/ui/BottonTheme'
+import { useTheme } from '../context/ThemeProvider'
+import { BgLight } from '../components/ui/BgLight'
+import { BgDark } from '../components/ui/BgDark'
 import { useAuth } from '../auth/AuthProvider'
 import { FormEvent, useState } from 'react'
 import { toast, Toaster } from 'sonner'
-import axios, { AxiosError } from 'axios'
-import { useTheme } from '../context/ThemeProvider'
-import { BgDark } from '../components/ui/BgDark'
-import { BgLight } from '../components/ui/BgLight'
-
-import { BottonTheme } from '../components/ui/BottonTheme'
 
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const { darkMode, toggleTheme } = useTheme()
-
   const { setIsAuthenticated } = useAuth()
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
-    axios.post('/login', { username, password, app: 'web-test' })
+    loginService(username, password)
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 200){
           setIsAuthenticated(true)
         }
       })
-      .catch((err) => {
-        if (err instanceof AxiosError) {
-          if (err.code === "ERR_NETWORK") {
-            toast.error('Error de conexión', { description: 'Verífica la conexión a internet y/o Servidor no responde' });
-          } else {
-            toast.error('Error');
-          }
-        }
-        if (err.response && err.response.status === 400) {
-          toast.error(err.response.data || 'Error');
+      .catch(err => {
+        if (err instanceof NetworkError) {
+          toast.error(err.message, { description: err.description })
+        } else {
+          toast.error(err.message, { description: err.description})
         }
       })
   }
-  
+
   return (
     <section className='h-screen w-screen flex items-center justify-center pb-12 relative'>
 

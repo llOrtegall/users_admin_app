@@ -19,6 +19,8 @@ export function AuthProvider({ children }: PropsAuthContext) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
+  console.log(isAuthenticated);
+
   useEffect(() => {
     axios.get('/profile', { params: { app: 'web-test' } })
       .then((res) => {
@@ -40,6 +42,7 @@ export function AuthProvider({ children }: PropsAuthContext) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = React.useContext(AuthContext);
   if (context === undefined) {
