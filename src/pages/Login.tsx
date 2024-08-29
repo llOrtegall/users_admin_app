@@ -1,7 +1,7 @@
 import { useAuth } from '../auth/AuthProvider'
 import { FormEvent, useState } from 'react'
 import { toast, Toaster } from 'sonner'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useTheme } from '../context/ThemeProvider'
 import { BgDark } from '../components/ui/BgDark'
 import { BgLight } from '../components/ui/BgLight'
@@ -26,8 +26,15 @@ function Login() {
         }
       })
       .catch((err) => {
-        if (err.response.status === 400) {
-          toast.error(err.response.data || 'Error')
+        if (err instanceof AxiosError) {
+          if (err.code === "ERR_NETWORK") {
+            toast.error('Error de conexión', { description: 'Verífica la conexión a internet y/o Servidor no responde' });
+          } else {
+            toast.error('Error');
+          }
+        }
+        if (err.response && err.response.status === 400) {
+          toast.error(err.response.data || 'Error');
         }
       })
   }

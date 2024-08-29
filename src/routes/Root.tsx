@@ -1,18 +1,17 @@
+import { useTheme } from '../context/ThemeProvider';
+import { Navigate, Outlet } from 'react-router-dom'
+import { BgLight } from '../components/ui/BgLight';
+import { BgDark } from '../components/ui/BgDark';
 import { useAuth } from '../auth/AuthProvider';
 import NavBar from '../components/NavBar';
-import { Outlet } from 'react-router-dom'
-import Login from '../pages/Login';
-import { BgDark } from '../components/ui/BgDark';
-import { BgLight } from '../components/ui/BgLight';
-import { useTheme } from '../context/ThemeProvider';
 import { Toaster } from 'sonner';
 
 export default function Root() {
   const { isAuthenticated, user } = useAuth();
   const { darkMode } = useTheme();
 
-  if(!isAuthenticated && !user){
-    return <Login />
+  if(!isAuthenticated || user === null) {
+    return <Navigate to='/login' />
   }
 
   return (
