@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { User } from '../types/User';
 import axios from 'axios';
+import { APP_NAME } from '../utils/contants';
 
 interface PropsAuthContext {
   children: React.ReactNode;
@@ -19,10 +20,8 @@ export function AuthProvider({ children }: PropsAuthContext) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  console.log(isAuthenticated);
-
   useEffect(() => {
-    axios.get('/profile', { params: { app: 'web-test' } })
+    axios.get('/profile', { params: { app: APP_NAME} })
       .then((res) => {
         setUser(res.data);
         setIsAuthenticated(true);

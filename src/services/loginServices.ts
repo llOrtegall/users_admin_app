@@ -1,4 +1,5 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError } from 'axios';
+import { APP_NAME } from '../utils/contants'
 
 export class NetworkError extends Error {
   description: string;
@@ -12,7 +13,7 @@ export class NetworkError extends Error {
 
 export const loginService = async (username: string, password: string): Promise<{ status: number, message: string }> => {
   try {
-    const res = await axios.post('/login', { username, password, app: 'web-test' });
+    const res = await axios.post('/login', { username, password, app: APP_NAME });
 
     if (res.status === 200) {
       return { status: res.status, message: res.data?.message || 'Login successful' };
@@ -21,7 +22,7 @@ export const loginService = async (username: string, password: string): Promise<
     }
   } catch (err) {
     if (err instanceof AxiosError) {
-      if (err.code === "ERR_NETWORK") {
+      if (err.code === 'ERR_NETWORK') {
         throw new NetworkError('Error de conexión', 'Verífica la conexión a internet y/o Servidor no responde');
       }
 

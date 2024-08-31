@@ -11,8 +11,6 @@ export default function Root() {
   const { darkMode } = useTheme()
   const { isAuthenticated } = useAuth()
 
-  console.log(console.log())  
-
   if (!isAuthenticated) {
     return <Login />
   }
