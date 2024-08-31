@@ -16,8 +16,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
       <ThemeProvider>
-        <RouterProvider router={router} >
-        </RouterProvider>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </AuthProvider>
   </StrictMode>,
