@@ -21,8 +21,8 @@ pipeline {
         stage('Install and build project') {
             steps {
                 script {
-                    sh 'yarn'
-                    sh 'yarn build'
+                    sh 'pnpm install --no-frozen-lockfile'
+                    sh 'pnpm build'
                 }
             }
         }
