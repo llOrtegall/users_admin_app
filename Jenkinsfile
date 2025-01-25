@@ -6,14 +6,14 @@ pipeline {
     }
 
     environment {
-      ENV_API_LOGIN_URL = credentials('ENV_API_LOGIN_URL')
+      ENV = credentials('ENV_CLIENT_ADMIN_USERS')
     }
     
     stages {
         stage('Copy .env files') {
             steps {
                 script {
-                    def env_client = readFile(ENV_API_LOGIN_URL)
+                    def env_client = readFile(ENV)
                     writeFile file: '.env', text: env_client
                 }
             }
