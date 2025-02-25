@@ -1,5 +1,5 @@
+import { APP_NAME, URL_API_LOGIN } from '../utils/contants'
 import axios, { AxiosError } from 'axios';
-import { APP_NAME } from '../utils/contants'
 
 export class NetworkError extends Error {
   description: string;
@@ -34,4 +34,12 @@ export const loginService = async (username: string, password: string): Promise<
 
     throw new Error('ha ocurrido un error inesperado');
   }
+}
+
+export const LogoutAndDeleteToken = () => {
+  const token = document.cookie
+
+  axios.post(`${URL_API_LOGIN}/logout`, { token })
+    .then(res => console.log(res))
+    .catch(err => console.error(err))
 }

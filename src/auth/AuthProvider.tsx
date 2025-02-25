@@ -1,4 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react';
+import { LogoutAndDeleteToken } from '../services/loginServices';
 import { APP_NAME, URL_API_LOGIN } from '../utils/contants';
 import { User } from '../types/User';
 import axios from 'axios';
@@ -36,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       })
       .catch(error => {
         if (error.response.status === 401) {
-          // LogoutAndDeleteToken()
+          LogoutAndDeleteToken()
           setIsAuthenticated(false)
           setUser(InitialUser)
         }
