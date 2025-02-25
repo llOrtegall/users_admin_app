@@ -1,38 +1,47 @@
-import React, { createContext, useEffect, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react';
+import { APP_NAME, URL_API_LOGIN } from '../utils/contants';
 import { User } from '../types/User';
 import axios from 'axios';
-import { APP_NAME } from '../utils/contants';
-
-interface PropsAuthContext {
-  children: React.ReactNode;
-}
 
 interface IAuthContext {
-  user: User | null
-  setUser: React.Dispatch<React.SetStateAction<User | null>>
   isAuthenticated: boolean
-  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
+  user: User
+  setUser: Dispatch<SetStateAction<User>>
+  setIsAuthenticated: Dispatch<SetStateAction<boolean>>
 }
+
+const InitialUser: User = { username: '', email: '', names: '', lastnames: '', company: '', process: '', sub_process: '' }
 
 export const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
-export function AuthProvider({ children }: PropsAuthContext) {
-  const [user, setUser] = useState<User | null>(null);
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<User>(InitialUser);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    axios.get('/profile', { params: { app: APP_NAME} })
-      .then((res) => {
-        setUser(res.data);
-        setIsAuthenticated(true);
-      })
-      .catch((res) => {
-        if(res.response.status === 401){
-          setUser(null)
+    const cookie = document.cookie
+
+    if (!cookie && cookie.split('=')[0] !== APP_NAME) {
+      setIsAuthenticated(false)
+      setUser(InitialUser)
+      return
+    }
+
+    axios.get(`${URL_API_LOGIN}/profile`, { params: { app: APP_NAME } })
+      .then(res => {
+        if (res.status === 200) {
+          setIsAuthenticated(true)
+          setUser(res.data)
         }
-        setUser(null);
-      });
-  }, [isAuthenticated]);
+      })
+      .catch(error => {
+        if (error.response.status === 401) {
+          // LogoutAndDeleteToken()
+          setIsAuthenticated(false)
+          setUser(InitialUser)
+        }
+      })
+  }, [isAuthenticated])
 
   return (
     <AuthContext.Provider value={{ setUser, user, isAuthenticated, setIsAuthenticated  }}>
@@ -43,7 +52,7 @@ export function AuthProvider({ children }: PropsAuthContext) {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
-  const context = React.useContext(AuthContext);
+  const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within a AuthProvider');
   }
