@@ -1,6 +1,6 @@
 // Definition of the User type
 export interface User {
-  id: string;
+  // id: string;
   names: string;
   lastnames: string;
   username: string;
@@ -8,9 +8,6 @@ export interface User {
   company: string;
   process: string;
   sub_process: string;
-  app: string;
-  iat: number;
-  exp: number;
 }
 
 export interface UserListed {
