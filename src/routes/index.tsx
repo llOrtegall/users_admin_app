@@ -8,6 +8,7 @@ import NotFound from '../pages/NotFound'
 import ListUsers from '../components/ListUsers'
 import CreateNewUser from '../components/CreateUser'
 import UserInfo from '../components/UserInfo'
+import ResetPassword from '../pages/resetPassword'
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,10 @@ const router = createBrowserRouter([
         ]
       }
     ]
-  },
+  },{
+    path: '/reset-password',
+    element: <ResetPassword />
+  }
 ])
 
 export default router
