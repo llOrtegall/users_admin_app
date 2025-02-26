@@ -164,10 +164,9 @@ export default function ResetPassword() {
                   </label>
                   <input
                     type='password'
-                    id='password'
+                    id='token'
                     placeholder='********'
-                    className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm
-                    '
+                    className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                     required
                   />
                 </div>
@@ -180,8 +179,7 @@ export default function ResetPassword() {
                     type='password'
                     id='password'
                     placeholder='********'
-                    className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm
-                    '
+                    className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                     required
                   />
                 </div>
@@ -194,8 +192,7 @@ export default function ResetPassword() {
                     type='password'
                     id='password'
                     placeholder='********'
-                    className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm
-                    '
+                    className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                     required
                   />
                 </div>
