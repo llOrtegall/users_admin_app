@@ -129,7 +129,7 @@ export default function ResetPassword() {
           steps === 2 && (
             <div className='w-[450px] bg-slate-200 px-8 py-6 rounded-lg border border-gray-300 shadow-lg'>
               <h1 className='text-xl font-bold mb-4'>Recuperación Contraseña</h1>
-              <p className=''>Por favor revisa tu correo electronico donde se recepcionará un código válido por 10 min para continuar el restablecimiento de contraseña.</p>
+              <p className=''>Por favor revisa tu correo electronico donde se recepcionará un código válido por 10 minutos para continuar el restablecimiento de contraseña.</p>
 
 
               <button
