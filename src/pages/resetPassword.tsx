@@ -34,10 +34,8 @@ export default function ResetPassword() {
       .then(res => {
         console.log(res);
         setLoader(false);
+        setSteps(2);
         toast.success('Solicitud Enviada', { description: 'Por favor revisa tu correo para continuar con el proceso' });
-        setTimeout(() => {
-          setSteps(2);
-        }, 2000);
       })
       .catch(error => {
         setLoader(false);
@@ -59,10 +57,8 @@ export default function ResetPassword() {
     axios.post(`${URL_API_LOGIN}/auth/reset-password`, { token: fields.token, password: fields.password, confirmPassword: fields.confirmPassword })
       .then(res => {
         console.log(res);
+        setSteps(4);
         toast.success('Contraseña Restablecida', { description: 'Tu contraseña ha sido cambiada exitosamente' });
-        setTimeout(() => {
-          setSteps(4);
-        }, 2000);
       })
       .catch(error => {
         if (error.response.status === 400) {
@@ -152,7 +148,7 @@ export default function ResetPassword() {
                 </button>
               </form>
               {
-                !loader && (
+                loader && (
                   <div className='bg-blue-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 text-center me-2 items-center absolute -bottom-20 right-0 left-0 '>
 
                     <svg aria-hidden='true' role='status' className='inline w-6 h-6 me-4 text-blue-600 animate-spin' viewBox='0 0 100 101' fill='none' xmlns='http://www.w3.org/2000/svg'>
