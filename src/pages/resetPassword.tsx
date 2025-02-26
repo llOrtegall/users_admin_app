@@ -11,9 +11,9 @@ function Calculate(step: number, totalSteps: number = 4): string {
 }
 
 function CalculateColorProgress(step: number): string {
-  if(step === 1) return 'bg-red-100';
-  if(step === 2) return 'bg-orange-200';
-  if(step === 3) return 'bg-blue-400';
+  if(step === 1) return 'bg-red-400';
+  if(step === 2) return 'bg-orange-300';
+  if(step === 3) return 'bg-blue-500';
   if(step === 4) return 'bg-green-600';
   return 'bg-gray-400';
 }
@@ -22,7 +22,7 @@ export default function ResetPassword() {
   const [document, setDocument] = useState('');
   const [email, setEmail] = useState('');
 
-  const [steps, setSteps] = useState<number>(4);
+  const [steps, setSteps] = useState<number>(1);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,23 +46,23 @@ export default function ResetPassword() {
     <div className='flex min-h-screen bg-gray-50 p-2 justify-center'>
 
       <div className='flex flex-col justify-between py-12'>
-        <div className={`p-12 py-10 rounded-full ${steps === 1 ? 'bg-red-100 text-white' : 'bg-gray-100'}`}>
-          <span className='font-semibold text-gray-400'>
+        <div className={`p-12 py-10 rounded-full shadow-md ${steps === 1 ? 'bg-red-400 text-white' : 'bg-gray-100 text-gray-500'}`}>
+          <span className='font-semibold'>
             1
           </span>
         </div>
-        <div className={`p-12 py-10 rounded-full ${steps === 2 ? 'bg-orange-200 text-white' : 'bg-gray-100'}`}>
-          <span className='font-semibold text-gray-400'>
+        <div className={`p-12 py-10 rounded-full shadow-md ${steps === 2 ? 'bg-orange-300 text-white' : 'bg-gray-100 text-gray-500'}`}>
+          <span className='font-semibold'>
             2
           </span>
         </div>
-        <div className={`p-12 py-10 rounded-full ${steps === 3 ? 'bg-blue-200 text-white' : 'bg-gray-100'}`}>
-          <span className='font-semibold text-gray-400'>
+        <div className={`p-12 py-10 rounded-full shadow-md ${steps === 3 ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-500'}`}>
+          <span className='font-semibold'>
             3
           </span>
         </div>
-        <div className={`p-12 py-10 rounded-full ${steps === 4 ? 'bg-green-600 text-white' : 'bg-gray-100'}`}>
-          <span className='font-semibold text-gray-400'>
+        <div className={`p-12 py-10 rounded-full shadow-md ${steps === 4 ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-500'}`}>
+          <span className='font-semibold'>
             4
           </span>
         </div>
@@ -117,7 +117,7 @@ export default function ResetPassword() {
 
                 <button
                   type='submit'
-                  className='w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                  className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                 >
                   Enviar Solicitud
                 </button>
@@ -134,7 +134,7 @@ export default function ResetPassword() {
 
               <button
                 onClick={() => setSteps(3)}
-                className='w-full bg-green-800 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-4'
+                className='w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-4'
               >
                 Código Verificación Recibido
               </button>
@@ -146,7 +146,7 @@ export default function ResetPassword() {
 
               <button
                 onClick={() => setSteps(1)}
-                className='w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-4'
+                className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-4'
               >
                 Volver a Solcitar Código
               </button>
@@ -203,7 +203,7 @@ export default function ResetPassword() {
 
                 <button
                   type='submit'
-                  className='w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                  className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                 >
                   Cambiar Contraseña
                 </button>
