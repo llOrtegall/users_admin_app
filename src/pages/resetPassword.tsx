@@ -129,8 +129,7 @@ export default function ResetPassword() {
           steps === 2 && (
             <div className='w-[450px] bg-slate-200 px-8 py-6 rounded-lg border border-gray-300 shadow-lg'>
               <h1 className='text-xl font-bold mb-4'>Recuperación Contraseña</h1>
-              <p className=''>Por favor revisa tu correo electronico donde se recepcionará un código válido por 10 minutos para continuar el restablecimiento de contraseña.</p>
-
+              <p className=''>Por favor revise su correo electrónico. Se le enviará un código para continuar con el proceso </p>
 
               <button
                 onClick={() => setSteps(3)}
@@ -148,7 +147,7 @@ export default function ResetPassword() {
                 onClick={() => setSteps(1)}
                 className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-4'
               >
-                Volver a Solcitar Código
+                Volver a Solicitar Código
               </button>
             </div>
           )
@@ -205,7 +204,7 @@ export default function ResetPassword() {
                   type='submit'
                   className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                 >
-                  Cambiar Contraseña
+                  Restablecer Contraseña
                 </button>
               </form>
             </div>
