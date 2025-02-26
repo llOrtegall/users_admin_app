@@ -10,11 +10,19 @@ function Calculate(step: number, totalSteps: number = 4): string {
   return `calc(100% * ${step} / ${totalSteps})`;
 }
 
+function CalculateColorProgress(step: number): string {
+  if(step === 1) return 'bg-red-400';
+  if(step === 2) return 'bg-orange-400';
+  if(step === 3) return 'bg-yellow-400';
+  if(step === 4) return 'bg-green-600';
+  return 'bg-gray-400';
+}
+
 export default function ResetPassword() {
   const [document, setDocument] = useState('');
   const [email, setEmail] = useState('');
 
-  const [steps, setSteps] = useState<number>(1);
+  const [steps, setSteps] = useState<number>(4);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,9 +46,9 @@ export default function ResetPassword() {
     <div className='flex min-h-screen bg-gray-100 p-2 justify-center'>
 
       <div className='px-2'>
-        <div className='h-full w-2 overflow-hidden rounded-md bg-gray-300 transition-all duration-300 ease-in-out'>
+        <div className='h-full w-2.5 overflow-hidden rounded-md bg-gray-300 transition-all duration-300 ease-in-out shadow-lg border border-gray-100'>
           <div
-            className='h-full bg-blue-600 transition-all duration-500 ease-in-out'
+            className={`h-full bg-blue-600 transition-all duration-500 ease-in-out ${CalculateColorProgress(steps)}`}
             style={{ height: `${Calculate(steps)}` }}
           >
           </div>
@@ -112,7 +120,6 @@ export default function ResetPassword() {
                 <span className='font-bold'>Nota: </span>Si no recibes el correo en tu bandeja de entrada, por favor revisa la bandeja de spam o correo no deseado.
 
               </p>
-
 
               <button
                 onClick={() => setSteps(1)}
