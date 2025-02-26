@@ -11,9 +11,9 @@ function Calculate(step: number, totalSteps: number = 4): string {
 }
 
 function CalculateColorProgress(step: number): string {
-  if(step === 1) return 'bg-red-400';
-  if(step === 2) return 'bg-orange-400';
-  if(step === 3) return 'bg-yellow-400';
+  if(step === 1) return 'bg-red-100';
+  if(step === 2) return 'bg-orange-200';
+  if(step === 3) return 'bg-blue-400';
   if(step === 4) return 'bg-green-600';
   return 'bg-gray-400';
 }
@@ -43,7 +43,30 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className='flex min-h-screen bg-gray-100 p-2 justify-center'>
+    <div className='flex min-h-screen bg-gray-50 p-2 justify-center'>
+
+      <div className='flex flex-col justify-between py-12'>
+        <div className={`p-12 py-10 rounded-full ${steps === 1 ? 'bg-red-100 text-white' : 'bg-gray-100'}`}>
+          <span className='font-semibold text-gray-400'>
+            1
+          </span>
+        </div>
+        <div className={`p-12 py-10 rounded-full ${steps === 2 ? 'bg-orange-200 text-white' : 'bg-gray-100'}`}>
+          <span className='font-semibold text-gray-400'>
+            2
+          </span>
+        </div>
+        <div className={`p-12 py-10 rounded-full ${steps === 3 ? 'bg-blue-200 text-white' : 'bg-gray-100'}`}>
+          <span className='font-semibold text-gray-400'>
+            3
+          </span>
+        </div>
+        <div className={`p-12 py-10 rounded-full ${steps === 4 ? 'bg-green-600 text-white' : 'bg-gray-100'}`}>
+          <span className='font-semibold text-gray-400'>
+            4
+          </span>
+        </div>
+      </div>
 
       <div className='px-2'>
         <div className='h-full w-2.5 overflow-hidden rounded-md bg-gray-300 transition-all duration-300 ease-in-out shadow-lg border border-gray-100'>
