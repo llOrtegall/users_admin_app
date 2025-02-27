@@ -18,7 +18,7 @@ function Login() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
-    axios.post('/login', { username, password})
+    axios.post('api_v1/login', { username, password})
       .then((res) => {
         if (res.status === 200){
           setIsAuthenticated(true)

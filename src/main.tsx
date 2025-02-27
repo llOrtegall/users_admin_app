@@ -7,7 +7,7 @@ import router from './routes';
 import axios from 'axios';
 import './index.css';
 
-axios.defaults.baseURL = import.meta.env.VITE_URL_API as string
+// axios.defaults.baseURL = import.meta.env.VITE_URL_API as string
 axios.defaults.withCredentials = true
 
 createRoot(document.getElementById('root')!).render(
