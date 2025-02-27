@@ -1,9 +1,9 @@
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Input } from './ui/Input';
 import { Label } from './ui/Label';
-import { toast } from 'sonner';
-import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
+import { toast } from 'sonner';
+import axios from 'axios';
 
 const Procces = [
   { id: 1, name: 'Técnologia' },

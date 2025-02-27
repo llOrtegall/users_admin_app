@@ -1,7 +1,7 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { UserListed } from '../types/User'
+import axios from 'axios'
 
 function UserInfo() {
   const { id } = useParams()

@@ -1,12 +1,12 @@
-import { useTheme } from '../context/ThemeProvider'
-import { BgLight } from '../components/ui/BgLight'
-import { BgDark } from '../components/ui/BgDark'
-import { useAuth } from '../auth/AuthProvider'
-import { Outlet } from 'react-router-dom'
-import NavBar from '../components/NavBar'
-import Login from '../pages/Login'
-import { Toaster } from 'sonner'
-import { Suspense } from 'react'
+import { useTheme } from '../context/ThemeProvider';
+import { BgLight } from '../components/ui/BgLight';
+import { BgDark } from '../components/ui/BgDark';
+import { useAuth } from '../auth/AuthProvider';
+import { Outlet } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import Login from '../pages/Login';
+import { Toaster } from 'sonner';
+import { Suspense } from 'react';
 
 export default function Root() {
   const { isAuthenticated, user } = useAuth()
