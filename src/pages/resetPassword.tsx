@@ -29,7 +29,7 @@ export default function ResetPassword() {
     e.preventDefault();
     setLoader(true);
 
-    axios.post('/auth/forgot-password', { document, email })
+    axios.post('api_v1/auth/forgot-password', { document, email })
       .then(res => {
         console.log(res);
         setLoader(false);
@@ -53,7 +53,7 @@ export default function ResetPassword() {
       return;
     }
 
-    axios.post('/auth/reset-password', { token: fields.token, password: fields.password, confirmPassword: fields.confirmPassword })
+    axios.post('api_v1/auth/reset-password', { token: fields.token, password: fields.password, confirmPassword: fields.confirmPassword })
       .then(res => {
         console.log(res);
         setSteps(4);
