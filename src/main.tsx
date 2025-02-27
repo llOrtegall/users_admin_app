@@ -8,7 +8,6 @@ import router from './routes';
 import axios from 'axios';
 import './index.css';
 
-
 axios.defaults.baseURL = URL_API_LOGIN
 axios.defaults.withCredentials = true
 
