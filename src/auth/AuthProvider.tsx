@@ -1,6 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react';
 import { LogoutAndDeleteToken } from '../services/loginServices';
-import { APP_NAME, URL_API_LOGIN } from '../utils/contants';
 import { User } from '../types/User';
 import axios from 'axios';
 
@@ -22,13 +21,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const cookie = document.cookie
 
-    if (!cookie && cookie.split('=')[0] !== APP_NAME) {
+    if (!cookie && cookie.split('=')[0] !== import.meta.env.VITE_APP_NAME as string) {
       setIsAuthenticated(false)
       setUser(InitialUser)
       return
     }
 
-    axios.get(`${URL_API_LOGIN}/profile`, { params: { app: APP_NAME } })
+    axios.get('/profile', { params: { app: import.meta.env.VITE_APP_NAME as string } })
       .then(res => {
         if (res.status === 200) {
           setIsAuthenticated(true)
@@ -45,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [isAuthenticated])
 
   return (
-    <AuthContext.Provider value={{ setUser, user, isAuthenticated, setIsAuthenticated  }}>
+    <AuthContext.Provider value={{ setUser, user, isAuthenticated, setIsAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
