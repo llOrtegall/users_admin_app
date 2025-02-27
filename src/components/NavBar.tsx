@@ -18,7 +18,7 @@ function NavBar() {
   const handleLogout = () => {
     const token = document.cookie
 
-    axios.post('/logout', { token })
+    axios.post('api_v1/logout', { token })
       .then((res) => {
         console.log(res.data);
         if (res.status === 200) {
