@@ -6,6 +6,7 @@ import { BgDark } from '../components/ui/BgDark';
 import { useAuth } from '../auth/AuthProvider';
 import { FormEvent, useState } from 'react';
 import { toast, Toaster } from 'sonner';
+import { APP_NAME } from '../main';
 import axios from 'axios';
 
 function Login() {
@@ -18,9 +19,9 @@ function Login() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
-    axios.post('api_v1/login', { username, password})
+    axios.post('api_v1/login', { username, password, app: APP_NAME })
       .then((res) => {
-        if (res.status === 200){
+        if (res.status === 200) {
           setIsAuthenticated(true)
         }
       })
@@ -31,37 +32,21 @@ function Login() {
           toast.error('Error inesperado')
         }
       })
-
-    /*
-    loginService(username, password)
-      .then((res) => {
-        if (res.status === 200){
-          setIsAuthenticated(true)
-        }
-      })
-      .catch(err => {
-        if (err instanceof NetworkError) {
-          toast.error(err.message, { description: err.description })
-        } else {
-          toast.error(err.message, { description: err.description})
-        }
-      })
-        */
   }
 
   return (
     <section className='h-screen w-screen flex items-center justify-center pb-12 relative'>
 
-    <div className='absolute top-2 right-2'>
-      <BottonTheme funTheme={toggleTheme}/>
-    </div>
+      <div className='absolute top-2 right-2'>
+        <BottonTheme funTheme={toggleTheme} />
+      </div>
 
-      { darkMode ? <BgDark /> : <BgLight /> }
+      {darkMode ? <BgDark /> : <BgLight />}
 
-      <form className='lg:w-5/12 xl:w-4/12 2xl:w-3/12 flex flex-col border-2 border-gray-300 dark:border-gray-500 px-20 py-12 rounded-md bg-transparent/5 shadow-md' 
+      <form className='lg:w-5/12 xl:w-4/12 2xl:w-3/12 flex flex-col border-2 border-gray-300 dark:border-gray-500 px-20 py-12 rounded-md bg-transparent/5 shadow-md'
         onSubmit={handleSubmit}>
         <figure className='flex justify-center pb-12'>
-          <img src='gane.webp' alt='logo de gane' width={150}/>
+          <img src='gane.webp' alt='logo de gane' width={150} />
         </figure>
         <div className='mb-5'>
           <label htmlFor='username' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white border-none'>Nombre Usuario:</label>

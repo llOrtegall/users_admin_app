@@ -2,6 +2,7 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffe
 import { LogoutAndDeleteToken } from '../services/loginServices';
 import { User } from '../types/User';
 import axios from 'axios';
+import { APP_NAME } from '../main';
 
 interface IAuthContext {
   isAuthenticated: boolean
@@ -21,13 +22,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const cookie = document.cookie
 
-    if (!cookie && cookie.split('=')[0] !== import.meta.env.VITE_APP_NAME as string) {
+    if (!cookie && cookie.split('=')[0] !== APP_NAME) {
       setIsAuthenticated(false)
       setUser(InitialUser)
       return
     }
 
-    axios.get('/profile', { params: { app: import.meta.env.VITE_APP_NAME as string } })
+    axios.get('/profile', { params: { app: APP_NAME } })
       .then(res => {
         if (res.status === 200) {
           setIsAuthenticated(true)

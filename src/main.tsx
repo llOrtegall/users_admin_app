@@ -7,6 +7,7 @@ import router from './routes';
 import axios from 'axios';
 import './index.css';
 
+export const APP_NAME = import.meta.env.VITE_APP_NAME as string
 // axios.defaults.baseURL = import.meta.env.VITE_URL_API as string
 axios.defaults.withCredentials = true
 
