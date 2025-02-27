@@ -11,7 +11,7 @@ interface IAuthContext {
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>
 }
 
-const InitialUser: User = { username: '', email: '', names: '', lastnames: '', company: '', process: '', sub_process: '' }
+const InitialUser: User = { id: '', username: '', email: '', names: '', lastnames: '', company: '', process: '', sub_process: '' }
 
 export const AuthContext = createContext<IAuthContext | undefined>(undefined);
 

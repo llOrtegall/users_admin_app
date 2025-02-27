@@ -1,6 +1,6 @@
 // Definition of the User type
 export interface User {
-  // id: string;
+  id: string;
   names: string;
   lastnames: string;
   username: string;
