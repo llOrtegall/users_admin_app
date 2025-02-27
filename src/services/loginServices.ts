@@ -1,4 +1,4 @@
-import { APP_NAME, URL_API_LOGIN } from '../utils/contants'
+import { APP_NAME, URL_API_LOGIN } from '../utils/contants';
 import axios, { AxiosError } from 'axios';
 
 export class NetworkError extends Error {

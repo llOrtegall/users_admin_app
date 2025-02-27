@@ -1,14 +1,14 @@
-import { createBrowserRouter } from 'react-router-dom'
-import Root from './Root'
+import { createBrowserRouter } from 'react-router-dom';
+import Root from './Root';
 
 // TODO: Import your pages here
-import CreateNewUser from '../components/CreateUser'
-import ResetPassword from '../pages/resetPassword'
-import ListUsers from '../components/ListUsers'
-import UserInfo from '../components/UserInfo'
-import NotFound from '../pages/NotFound'
-import UsersPage from '../pages/Users'
-import Home from '../pages/Home'
+import CreateNewUser from '../components/CreateUser';
+import ResetPassword from '../pages/resetPassword';
+import ListUsers from '../components/ListUsers';
+import UserInfo from '../components/UserInfo';
+import NotFound from '../pages/NotFound';
+import UsersPage from '../pages/Users';
+import Home from '../pages/Home';
 
 const router = createBrowserRouter([
   {

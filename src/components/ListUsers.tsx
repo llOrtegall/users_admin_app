@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { UserListed } from '../types/User'
-import axios from 'axios'
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserListed } from '../types/User';
+import axios from 'axios';
 
 function ListUsers() {
   const [users, setUsers] = useState<UserListed[]>([])

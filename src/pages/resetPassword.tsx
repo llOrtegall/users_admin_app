@@ -1,4 +1,4 @@
-import { URL_API_LOGIN } from '../utils/contants'
+import { URL_API_LOGIN } from '../utils/contants';
 import { Toaster, toast } from 'sonner';
 import React, { useState } from 'react';
 import axios from 'axios';

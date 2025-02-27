@@ -1,11 +1,11 @@
-import { loginService, NetworkError } from '../services/loginServices'
-import { BottonTheme } from '../components/ui/BottonTheme'
-import { useTheme } from '../context/ThemeProvider'
-import { BgLight } from '../components/ui/BgLight'
-import { BgDark } from '../components/ui/BgDark'
-import { useAuth } from '../auth/AuthProvider'
-import { FormEvent, useState } from 'react'
-import { toast, Toaster } from 'sonner'
+import { loginService, NetworkError } from '../services/loginServices';
+import { BottonTheme } from '../components/ui/BottonTheme';
+import { useTheme } from '../context/ThemeProvider';
+import { BgLight } from '../components/ui/BgLight';
+import { BgDark } from '../components/ui/BgDark';
+import { useAuth } from '../auth/AuthProvider';
+import { FormEvent, useState } from 'react';
+import { toast, Toaster } from 'sonner';
 
 function Login() {
   const [username, setUsername] = useState('')
