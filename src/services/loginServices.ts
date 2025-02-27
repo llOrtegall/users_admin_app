@@ -13,7 +13,7 @@ export class NetworkError extends Error {
 
 export const loginService = async (username: string, password: string): Promise<{ status: number, message: string }> => {
   try {
-    const res = await axios.post('/login', { username, password, app: APP_NAME });
+    const res = await axios.post(`${URL_API_LOGIN}/login`, { username, password, app: APP_NAME });
 
     if (res.status === 200) {
       return { status: res.status, message: res.data?.message || 'Login successful' };
