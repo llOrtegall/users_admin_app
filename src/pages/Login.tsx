@@ -1,4 +1,4 @@
-import { loginService, NetworkError } from '../services/loginServices';
+// import { loginService, NetworkError } from '../services/loginServices';
 import { BottonTheme } from '../components/ui/BottonTheme';
 import { useTheme } from '../context/ThemeProvider';
 import { BgLight } from '../components/ui/BgLight';
@@ -6,6 +6,7 @@ import { BgDark } from '../components/ui/BgDark';
 import { useAuth } from '../auth/AuthProvider';
 import { FormEvent, useState } from 'react';
 import { toast, Toaster } from 'sonner';
+import axios from 'axios';
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -17,6 +18,21 @@ function Login() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
+    axios.post('/login', { username, password})
+      .then((res) => {
+        if (res.status === 200){
+          setIsAuthenticated(true)
+        }
+      })
+      .catch(err => {
+        if (err.response.status === 401) {
+          toast.error('Usuario o contraseña incorrectos')
+        } else {
+          toast.error('Error inesperado')
+        }
+      })
+
+    /*
     loginService(username, password)
       .then((res) => {
         if (res.status === 200){
@@ -30,6 +46,7 @@ function Login() {
           toast.error(err.message, { description: err.description})
         }
       })
+        */
   }
 
   return (
