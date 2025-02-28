@@ -9,7 +9,7 @@ function ListUsers() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('api_v1/users')
+    axios.get('/users')
       .then(res => {
         setUsers(res.data)
       })

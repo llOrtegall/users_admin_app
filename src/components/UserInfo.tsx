@@ -8,7 +8,7 @@ function UserInfo() {
   const [user, setUser] = useState<UserListed>()
 
   useEffect(() => {
-    axios.get(`api_v1/user/${id}`)
+    axios.get(`/user/${id}`)
       .then(res => {
         setUser(res.data)
       })
