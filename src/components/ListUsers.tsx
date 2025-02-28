@@ -26,7 +26,7 @@ function ListUsers() {
 
   const handleUserInfo = (document: number) => {
     console.log(document)
-    navigate(`api_v1/users/${document}`)
+    navigate(`/users/${document}`)
   }
 
   return (
