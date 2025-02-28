@@ -28,7 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return
     }
 
-    axios.get('/profile', { params: { app: APP_NAME } })
+    axios.get('api_v1/profile', { params: { app: APP_NAME } })
       .then(res => {
         if (res.status === 200) {
           setIsAuthenticated(true)

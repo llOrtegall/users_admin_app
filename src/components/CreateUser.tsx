@@ -44,7 +44,7 @@ function CreateNewUser() {
 
     const data = Object.fromEntries(new FormData(ev.currentTarget));
 
-    axios.post('/register', data)
+    axios.post('api_v1/register', data)
       .then(res => {
         if (res.status === 201) {
           formRef.current?.reset();
