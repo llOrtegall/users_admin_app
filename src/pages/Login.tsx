@@ -26,11 +26,12 @@ function Login() {
         }
       })
       .catch(err => {
-        if (err.response.status === 401) {
-          toast.error('Usuario o contraseña incorrectos')
-        } else {
-          toast.error('Error inesperado')
+        console.log(err.response);
+
+        if (err.response.status === 400) {
+          toast.error(`${err.response.data.message}`, { description: 'Por favor, verifique los datos ingresados' })
         }
+
       })
   }
 
