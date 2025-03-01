@@ -9,6 +9,7 @@ import UserInfo from '../components/UserInfo';
 import NotFound from '../pages/NotFound';
 import UsersPage from '../pages/Users';
 import Home from '../pages/Home';
+import { EditUserForm } from '../components/EditUserForm';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'edit/:id',
-            element: <h1>Test Edit</h1>
+            element: <EditUserForm />
           }
         ]
       }
