@@ -94,7 +94,7 @@ function ListUsers() {
                       Ver Info
                     </button>
                     <button
-                      onClick={() => navigate(`/user/${user.document}/edit`)}
+                      onClick={() => navigate(`/users/edit/${user.document}`)}
                       className='rounded-md dark:hover:bg-yellow-500 dark:bg-yellow-600 bg-yellow-200 py-1 px-2 hover:bg-yellow-400 hover:text-white transition-all'>
                       Editar
                     </button>
