@@ -39,7 +39,7 @@ function ListUsers() {
               <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z' />
             </svg>
           </div>
-          <input type='search' id='default-search' className='outline-none block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' placeholder='1118415127  -  Pepito perez' required value={search} onChange={ev => setSearch(ev.target.value)}/>
+          <input type='search' id='default-search' className='outline-none block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' placeholder='1118415127  -  Pepito perez' required value={search} onChange={ev => setSearch(ev.target.value)} />
         </div>
       </div>
 
@@ -88,10 +88,16 @@ function ListUsers() {
                     }
                   </td>
                   <td className='px-6 py-4 flex gap-2 justify-center text-black dark:text-white'>
-                    <button onClick={() => handleUserInfo(user.document)} 
-                    className='rounded-md dark:hover:bg-green-500 dark:bg-green-700 bg-green-300 py-1 px-2 hover:bg-green-500 hover:text-white transition-all'>Ver Info</button>
-                    {/* <button className='rounded-md dark:hover:bg-yellow-500 dark:bg-yellow-600 bg-yellow-200 py-1 px-2 hover:bg-yellow-400 hover:text-white transition-all'>Editar</button>
-                    <button className='rounded-md dark:hover:bg-red-500 dark:bg-red-700 bg-red-300 py-1 px-2 hover:bg-red-500 hover:text-white transition-all'>Eliminar</button> */}
+                    <button
+                      onClick={() => handleUserInfo(user.document)}
+                      className='rounded-md dark:hover:bg-green-500 dark:bg-green-700 bg-green-300 py-1 px-2 hover:bg-green-500 hover:text-white transition-all'>
+                      Ver Info
+                    </button>
+                    <button
+                      onClick={() => navigate(`/user/${user.document}/edit`)}
+                      className='rounded-md dark:hover:bg-yellow-500 dark:bg-yellow-600 bg-yellow-200 py-1 px-2 hover:bg-yellow-400 hover:text-white transition-all'>
+                      Editar
+                    </button>
                   </td>
                 </tr>
               )
