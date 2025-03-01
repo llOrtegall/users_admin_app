@@ -9,7 +9,6 @@ export function EditUserForm() {
   const [user, setUser] = useState<UserListed>({
     id: '',
     company: '',
-    createdAt: '',
     document: 0,
     lastnames: '',
     names: '',
@@ -18,8 +17,9 @@ export function EditUserForm() {
     state: false,
     sub_process: '',
     updatedAt : '',
-    username: '',
-    email: ''
+    email: '',
+    createdAt: '',
+    username: ''
   });
   const [loading, setLoading] = useState(false);
 
@@ -60,7 +60,7 @@ export function EditUserForm() {
   };
 
   return (
-    <div className='flex justify-center items-center min-h-screen bg-gray-100'>
+    <div className=''>
       <div className='bg-white p-8 rounded shadow-md w-full max-w-md'>
         <h1 className='text-2xl font-bold mb-6'>Editar Usuario</h1>
         <form onSubmit={handleSubmit}>
